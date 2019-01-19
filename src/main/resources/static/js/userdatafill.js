@@ -1,4 +1,12 @@
 $(document).ready(function() {
+
+
+    var html = $('#jsonUsersString').text();
+    console.log(html);
+
+
+
+
     $.ajax({
         url: "http://localhost:8080/rest/user/principal"
     }).then(function(data) {

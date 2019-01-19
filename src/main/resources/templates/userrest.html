@@ -33,8 +33,10 @@
                 <h1>User page</h1>
           <!--      <p id="hellouser" />
         <span id="userdataid"></span><span id="userdatalogin"></span><span id="userdataname"></span><span id="userdatapassword"></span><span id="userdatarole"></span>        -->
-        <p id="usersList">"${jsonusers}"</p>
-        <span th:text="${jsonusers}">id</span>
+
+        <span th:text="${jsonusers}" hidden="true" id="jsonUsersString" >text</span>
+
+
             </div>
         </div>
 
