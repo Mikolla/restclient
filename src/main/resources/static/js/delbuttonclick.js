@@ -25,8 +25,8 @@ $(document).on("click", '#delButton', function() {
     console.log('role to del = ' + role100);
 
     jQuery.ajax({
-        url: 'http://localhost:8080/rest/user/del/' + id100,
-        type: 'DELETE',
+        url: 'http://localhost:8090/userrest/delete/' + id100,
+        type: 'GET',
         success: function(data) {
             console.log('removed user id was - ' + id100);
 

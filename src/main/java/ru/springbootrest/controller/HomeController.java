@@ -4,9 +4,11 @@ package ru.springbootrest.controller;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,16 +85,36 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value = { "/admin/edit" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/userrest/edit" }, method = RequestMethod.POST)
 	public String updateUser(@RequestParam(value = "id") String id,
 							 @RequestParam(value = "login") String login,
 							 @RequestParam(value = "name") String name,
 							 @RequestParam(value = "password") String password,
 							 @RequestParam(value = "role") String roleName) {
+		//       System.out.println("name = " +  name + " login = " + login + " password = " + password + " rolename = " + roleName);
+		int roleId = roleName.equals("Admin") ? 1 : 2;
+		String jsonEditUserString = "{\"id\":" + id + ",\"name\":\"" + name + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\",\"roles\":[{\"id\":" + roleId + ",\"roleName\":\"" + roleName + "\"}]}";
+// {"id":118,"name":"kp","login":"kp","password":"kp","roles":[{"id":1,"roleName":"Admin","users":[]}]}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		return "redirect:/admin";
+		// Data attached to the request.
+		HttpEntity<String> requestBody = new HttpEntity<>(jsonEditUserString, headers);
+	//	restTemplate.exchange(URL_USERS + "/edit", HttpMethod.PUT, requestBody, String.class);
+		restTemplate.put(URL_USERS + "/edit", requestBody, Void.class);
+
+//String addedUserString = restTemplate.
+		return "redirect:/userrest";
 	}
 
+
+	@RequestMapping(value = "/userrest/delete/{id}", method = RequestMethod.GET)
+	public String deleteUser(@PathVariable("id") Long id) {
+		restTemplate.delete(URL_USERS + "/del/" + id);
+		return "redirect:/userrest";
+
+	}
 
 
 

@@ -23,7 +23,7 @@ $(document).on("click", '#edButton', function() {
     console.log('password = ' + password100);
     console.log('role = ' + role100);
     var modalBody = $('<div id="modalContent"></div>');
-    var modalForm = $('<form id="formoid" role="form" name="modalForm" action="/adminrest" method="POST" ></form>');
+    var modalForm = $('<form id="formoid" role="form" name="modalForm" action="/userrest/edit" method="POST" ></form>');
 
 
     var idForm = $('<div class="form-group"></div>');
