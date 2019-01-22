@@ -7,10 +7,9 @@
     <div th:replace="fragments/header :: header-css"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="../../js/usertablefill.js"></script>
+    <script src="../../js/userdatafill.js"></script>
     <script src="../../js/edituserfillnoajax.js"></script>
     <script src="../../js/delbuttonclick.js"></script>
-    <script src="../../js/adduserclick.js"></script>
 
 </head>
 
@@ -27,13 +26,14 @@
     <div class="col-md-2" style="margin-top: 20px; padding-right: 0px;  min-height: 85vh;">
         <nav class="nav-sidebar  nav-justified">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="/adminrest" style="border-radius: 0;">Admin</a></li>
-                <li class=""><a href="/userrest" >User</a></li>
+                <li class=""><a href="/adminrest" >Admin</a></li>
+                <li class="active"><a href="/userrest" style="border-radius: 0;">User</a></li>
             </ul>
         </nav>
     </div>
     <div class="col-md-10" style="background: #f9f9f9; padding-right: 40px;  min-height: 85vh;">
-        <h1>Admin panel</h1>
+        <h1>User page</h1>
+        <span th:text="${jsonusers}" hidden="true" id="jsonUsersString" >text</span>
         <br/>
 
 
@@ -88,7 +88,7 @@
                     <center>
                         <div class="col-md-4"  style="float:inherit">
 
-                            <form role="form" id="adduserForm" name="modalFormAdd"  align="center"  action="/adminrest" method="POST">
+                            <form role="form" id="adduserForm" name="modalFormAdd"  align="center"  action="/userrest/add" method="POST">
                                 <!--     <form role="form" class="form-inline"  align="center"   action="/admin/edit" method="POST">  -->
                                 <div class="form-group"  style="float:inherit">
                                     <label for="login" style="margin-top: 5%">login</label>
@@ -106,7 +106,7 @@
                                         <option value="Admin">Admin</option>
                                     </select>
                                     <!--   <input type="submit" id="addnewuserButton" value="Add new user" class="btn btn-success" style="margin-top: 20px; margin-bottom: 10px;"></input> -->
-                                    <button type="button" id="addnewuserButton" class="btn btn-success" style="margin-top: 20px; margin-bottom: 10px;">Add new user</button>
+                                    <button type="submit"  id="addnewuserButton" class="btn btn-success" style="margin-top: 20px; margin-bottom: 10px;">Add new user</button>
                                 </div>
                             </form>
                         </div>

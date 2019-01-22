@@ -32,8 +32,10 @@ $(document).ready(function() {
             '<td>' +
             '<button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>' +
             ' ' +
-            '<button type="button" class="btn btn-primary" id="delButton">Delete</button>'
-            + '</td>'
+            '<button type="button" class="btn btn-primary" id="delButton">Delete</button>'+
+            ' <a href="\/userrest/delete/' + userList[i].id + '"><button type="button" class="btn btn-primary">Delete</button></a>'+
+
+              '</td>'
             + '</tr>'
         );
 
