@@ -2,6 +2,7 @@ package ru.springbootrest.controller;
 
 
 
+import com.google.gson.Gson;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import ru.springbootrest.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -56,7 +60,15 @@ public class HomeController {
 
 	@RequestMapping(value = "/userrest", method = RequestMethod.GET)
 	public String userPageREST(Model modelMap) {
+		//List<User> userList = new ArrayList<>();
+		User[] list = restTemplate.getForObject(URL_USERS + "/all", User[].class);
+		for (User v : list) {
+			System.out.println(v.getName());
+		}
 		String jsonUsersString = restTemplate.getForObject(URL_USERS + "/all", String.class);
+
+		modelMap.addAttribute("usersArray", list);
+		modelMap.addAttribute("jsonusersArray", new Gson().toJson(list));
 		modelMap.addAttribute("jsonusers", jsonUsersString);
 		return "userrest";
 	}

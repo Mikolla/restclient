@@ -1,14 +1,11 @@
 $(document).ready(function() {
 
 
+
+
     var userListStr = $('#jsonUsersString').text();
     var userList = jQuery.parseJSON( userListStr );
-    console.log(userList);
-    console.log("id = " + userList[0].id);
-    console.log("name = " + userList[0].name);
-    console.log("login = " + userList[0].login);
-    console.log("password = " + userList[0].password);
-    console.log("role = " + userList[0].roles[0].roleName);
+
 
 
     var myform = document.getElementById("jsonUsersString").innerHTML;
