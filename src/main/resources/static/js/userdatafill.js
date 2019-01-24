@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
 
-
+/*
     var userListStr = $('#jsonUsersString').text();
     var userList = jQuery.parseJSON( userListStr );
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
     }
 
-
+*/
 
 
 
