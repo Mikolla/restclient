@@ -61,14 +61,14 @@ public class HomeController {
 	@RequestMapping(value = "/userrest", method = RequestMethod.GET)
 	public String userPageREST(Model modelMap) {
 		//List<User> userList = new ArrayList<>();
-		User[] list = restTemplate.getForObject(URL_USERS + "/all", User[].class);
-		for (User v : list) {
+		User[] usersArray = restTemplate.getForObject(URL_USERS + "/all", User[].class);
+		for (User v : usersArray) {
 			System.out.println(v.getName());
 		}
 		String jsonUsersString = restTemplate.getForObject(URL_USERS + "/all", String.class);
 
-		modelMap.addAttribute("usersArray", list);
-		modelMap.addAttribute("jsonusersArray", new Gson().toJson(list));
+		modelMap.addAttribute("usersArray", usersArray);
+		modelMap.addAttribute("jsonusersArray", new Gson().toJson(usersArray));
 		modelMap.addAttribute("jsonusers", jsonUsersString);
 		return "userrest";
 	}
